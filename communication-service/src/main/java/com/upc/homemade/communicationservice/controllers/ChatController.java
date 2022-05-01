@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +26,49 @@ public class ChatController{
                 return new ResponseEntity<Chat>(optionalChat.get(), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<Chat> save(@Valid @RequestBody Chat chat, BindingResult result){
+
+        try {
+            Chat chatCreate =  chatService.save(chat);
+            return ResponseEntity.status(HttpStatus.CREATED).body(chatCreate);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Chat> update(@PathVariable("id") Long id, @RequestBody Chat chat) {
+        try {
+            Optional<Chat> optionalChat = chatService.findById(id);
+            if (optionalChat.isPresent()) {
+                Chat chatCreate = chatService.save(chat);
+                return ResponseEntity.status(HttpStatus.OK).body(chatCreate);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Chat> deleteById(@PathVariable("id") Long id){
+
+        try {
+            Optional<Chat> optionalChat = chatService.findById(id);
+            if(optionalChat.isPresent()){
+                chatService.deleteById(id);
+                return new ResponseEntity<Chat>(HttpStatus.OK);
+            } else {
+                return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
