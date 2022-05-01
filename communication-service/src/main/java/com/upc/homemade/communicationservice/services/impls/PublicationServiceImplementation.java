@@ -1,11 +1,11 @@
 package com.upc.homemade.communicationservice.services.impls;
 
+import com.upc.homemade.communicationservice.entities.Publication;
+import com.upc.homemade.communicationservice.repositories.PublicationRepository;
+import com.upc.homemade.communicationservice.services.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upc.entities.Publication;
-import pe.edu.upc.repositories.PublicationRepository;
-import pe.edu.upc.services.PublicationService;
 
 import java.util.List;
 import java.util.Optional;

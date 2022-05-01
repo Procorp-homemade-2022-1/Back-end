@@ -1,11 +1,12 @@
 package com.upc.homemade.communicationservice.services.impls;
 
+import com.upc.homemade.communicationservice.entities.Comment;
+import com.upc.homemade.communicationservice.repositories.CommentRepository;
+import com.upc.homemade.communicationservice.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upc.entities.Comment;
-import pe.edu.upc.repositories.CommentRepository;
-import pe.edu.upc.services.CommentService;
+
 
 import java.util.List;
 import java.util.Optional;

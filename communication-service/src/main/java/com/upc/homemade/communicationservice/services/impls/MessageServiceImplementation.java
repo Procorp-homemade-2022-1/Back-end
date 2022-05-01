@@ -1,14 +1,15 @@
 package com.upc.homemade.communicationservice.services.impls;
 
+import com.upc.homemade.communicationservice.entities.Message;
+import com.upc.homemade.communicationservice.repositories.MessageRepository;
+import com.upc.homemade.communicationservice.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.edu.upc.entities.Message;
-import pe.edu.upc.repositories.MessageRepository;
-import pe.edu.upc.services.MessageService;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class MessageServiceImplementation implements MessageService {
