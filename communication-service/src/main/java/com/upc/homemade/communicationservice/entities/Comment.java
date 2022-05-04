@@ -26,4 +26,5 @@ public class Comment {
     @JoinColumn(name = "publication_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Publication publication;
+    //prueba
 }
