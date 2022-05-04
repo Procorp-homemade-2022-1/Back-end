@@ -21,4 +21,5 @@ public class Homie {
     private Long phone;
     @Column(name = "email", length = 40, nullable = false)
     private String email;
+	//edit
 }
