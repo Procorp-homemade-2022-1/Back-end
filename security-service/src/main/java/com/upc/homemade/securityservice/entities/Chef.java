@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "chefs")
 @Data
 public class Chef {
+    //a
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
