@@ -6,7 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/upc-is/fas-spring-micro-ms.git
+          uri: https://github.com/Procorp-homemade-2022-1/Back-end.git
           searchPaths: config-data
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
