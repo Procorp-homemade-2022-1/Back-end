@@ -1,9 +1,13 @@
 package com.upc.homemade.businessservice.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -22,5 +26,8 @@ public class Menu {
     private String fechaPublicacion;
      */
 
+    @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "menusIncluded")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Recipe> recipesIncluded = new HashSet<>();
 
 }
