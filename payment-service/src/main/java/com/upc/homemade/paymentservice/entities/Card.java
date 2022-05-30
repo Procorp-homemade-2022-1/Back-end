@@ -14,7 +14,7 @@ public class Card {
     @Column(name = "number")
     private Long number;
     @Column(name = "ccv", length = 3)
-    private Integer ccv;
+    private String ccv;
     @Column(name = "expiration")
     private String expiration;
     @Column(name = "owner")
