@@ -25,14 +25,8 @@ public class Recipe {
     @Column(name = "url_picture", length = 400, nullable = false)
     private String url_picture;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-            name = "recipe_menu",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "menu_id")
-    )
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Set<Menu> menusIncluded = new HashSet<>();
+    //@Column(name = "menu_id")
+   // private long menuId;
 
 
 }
