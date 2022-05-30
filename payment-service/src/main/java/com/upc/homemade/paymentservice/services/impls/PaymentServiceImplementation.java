@@ -1,9 +1,9 @@
-package com.upc.homemade.securityservice.services.impls;
+package com.upc.homemade.paymentservice.services.impls;
 
-import com.upc.homemade.securityservice.entities.Payment;
-import com.upc.homemade.securityservice.exception.ResourceNotFoundException;
-import com.upc.homemade.securityservice.repositories.PaymentRepository;
-import com.upc.homemade.securityservice.services.PaymentService;
+import com.upc.homemade.paymentservice.entities.Payment;
+import com.upc.homemade.paymentservice.exception.ResourceNotFoundException;
+import com.upc.homemade.paymentservice.repositories.PaymentRepository;
+import com.upc.homemade.paymentservice.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

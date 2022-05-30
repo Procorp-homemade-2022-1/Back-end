@@ -1,7 +1,7 @@
-package com.upc.homemade.securityservice.controllers;
+package com.upc.homemade.paymentservice.controllers;
 
-import com.upc.homemade.securityservice.entities.Payment;
-import com.upc.homemade.securityservice.services.PaymentService;
+import com.upc.homemade.paymentservice.entities.Payment;
+import com.upc.homemade.paymentservice.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

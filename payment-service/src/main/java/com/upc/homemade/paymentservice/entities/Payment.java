@@ -1,4 +1,4 @@
-package com.upc.homemade.securityservice.entities;
+package com.upc.homemade.paymentservice.entities;
 
 import lombok.Data;
 
@@ -9,11 +9,15 @@ import java.util.Date;
 @Table(name = "payments")
 @Data
 public class Payment {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @Column(name = "status")
+    private String status;
     @Column(name = "description", length = 200)
     private String description;
+    @Column(name = "amount")
+    private float amount;
     @Column(name = "dateOfPayment")
-    private Date date;
+    private Date date = new Date();
 }
