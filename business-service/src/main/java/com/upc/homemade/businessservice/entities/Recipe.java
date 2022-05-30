@@ -3,14 +3,16 @@ package com.upc.homemade.businessservice.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
 @Table(name="recipes")
 @Data
 public class Recipe {
-    @Id
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
@@ -23,9 +25,8 @@ public class Recipe {
     @Column(name = "url_picture", length = 400, nullable = false)
     private String url_picture;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Menu menu;
+    //@Column(name = "menu_id")
+   // private long menuId;
+
 
 }
