@@ -20,4 +20,6 @@ public class Payment {
     private float amount;
     @Column(name = "dateOfPayment")
     private Date date = new Date();
+    @Column(name="user_id")
+    private Long userId;
 }

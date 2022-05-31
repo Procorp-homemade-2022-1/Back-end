@@ -19,6 +19,8 @@ public class Card {
     private String expiration;
     @Column(name = "owner")
     private String owner;
+    @Column(name = "user_id")
+    private Long userId;
 
 
 }
