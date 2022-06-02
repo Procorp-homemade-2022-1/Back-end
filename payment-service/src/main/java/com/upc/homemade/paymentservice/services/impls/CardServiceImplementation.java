@@ -2,7 +2,7 @@ package com.upc.homemade.paymentservice.services.impls;
 
 import com.upc.homemade.paymentservice.entities.Card;
 import com.upc.homemade.paymentservice.exception.ResourceNotFoundException;
-import com.upc.homemade.paymentservice.repositories.CardRepository;
+import com.upc.homemade.paymentservice.services.repositories.CardRepository;
 
 import com.upc.homemade.paymentservice.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +46,16 @@ public class CardServiceImplementation implements CardService {
     public void deleteById(Long aLong) throws Exception {
         cardRepository.deleteById(aLong);
     }
-
     @Override
     public Card getCardById(Long cardId) {
-        return cardRepository.findById(cardId).orElseThrow(() -> new ResourceNotFoundException("Card", "Id", cardId));
+
+        return cardRepository.findById(cardId).orElseThrow(
+                () -> new ResourceNotFoundException("Card", "Id", cardId)
+        );
     }
 
+    @Override
+    public List<Card> getByHomieId(Long homieId) throws Exception {
+        return cardRepository.getByHomieId(homieId);
+    }
 }
