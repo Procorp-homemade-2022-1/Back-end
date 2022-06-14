@@ -24,8 +24,8 @@ public class Ingredients {
 
 
     //@NotNull(message = "La categoria no puede ser vacia")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-    private Recipe recipe;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "recipe_id")
+    //@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    //private Recipe recipe;
 }

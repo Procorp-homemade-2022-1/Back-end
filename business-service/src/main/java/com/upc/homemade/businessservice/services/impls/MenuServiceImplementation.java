@@ -1,6 +1,7 @@
 package com.upc.homemade.businessservice.services.impls;
 
 import com.upc.homemade.businessservice.entities.Menu;
+import com.upc.homemade.businessservice.exception.ResourceNotFoundException;
 import com.upc.homemade.businessservice.repositories.MenuRepository;
 import com.upc.homemade.businessservice.services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,9 @@ public class MenuServiceImplementation implements MenuService {
     @Override
     public void deleteById(Long aLong) throws Exception {
         menuRepository.deleteById(aLong);
+    }
+    @Override
+    public Menu getMenuById(Long menuId) {
+        return menuRepository.findById(menuId).orElseThrow(() -> new ResourceNotFoundException("Menu", "Id", menuId));
     }
 }
