@@ -1,4 +1,4 @@
-package com.upc.homemade.communicationservice.execption;
+package com.upc.homemade.communicationservice.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

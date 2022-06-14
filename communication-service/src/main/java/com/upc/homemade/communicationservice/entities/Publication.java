@@ -17,6 +17,9 @@ public class Publication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "chefId")
+    private long chefId;
+
     @Column(name = "dateOfPublication")
     private Date date = new Date();
 

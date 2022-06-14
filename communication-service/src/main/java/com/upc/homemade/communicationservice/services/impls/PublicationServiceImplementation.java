@@ -1,6 +1,7 @@
 package com.upc.homemade.communicationservice.services.impls;
 
 import com.upc.homemade.communicationservice.entities.Publication;
+import com.upc.homemade.communicationservice.exception.ResourceNotFoundException;
 import com.upc.homemade.communicationservice.repositories.PublicationRepository;
 import com.upc.homemade.communicationservice.services.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,9 @@ public class PublicationServiceImplementation implements PublicationService {
     @Override
     public void deleteById(Long aLong) throws Exception {
         publicationRepository.deleteById(aLong);
+    }
+    @Override
+    public Publication getPublicationById(Long publicationid) {
+        return publicationRepository.findById(publicationid).orElseThrow(() -> new ResourceNotFoundException("Publication", "Id", publicationid));
     }
 }

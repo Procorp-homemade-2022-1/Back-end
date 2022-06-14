@@ -60,6 +60,7 @@ public class HomieServiceImplementation implements HomieService {
         if (homie != null) {
             List<Card> cards = cardClient.getByHomieId(homieId).getBody();
             homie.setCards(cards);
+
         }
         return homie;
     }

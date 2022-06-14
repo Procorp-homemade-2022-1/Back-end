@@ -43,4 +43,9 @@ public class ChatServiceImplementation implements ChatService {
     public void deleteById(Long aLong) throws Exception {
         chatRepository.deleteById(aLong);
     }
+
+    @Override
+    public Chat getChatById(Long aLong) {
+        return chatRepository.getById(aLong);
+    }
 }
