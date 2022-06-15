@@ -16,15 +16,15 @@ spring:
           predicates:
             - Path=/business/**
         - id: communication-service
-            uri: lb://communication-service
-            predicates:
-              - Path=/communication/**
+          uri: lb://communication-service
+          predicates:
+            - Path=/communication/**
         - id: payment-service
-            uri: lb://payment-service
-            predicates:
-              - Path=/payment/**
+          uri: lb://payment-service
+          predicates:
+            - Path=/payment/**
         - id: security-service
-            uri: lb://security-service
-            predicates:
-              - Path=/security/**
+          uri: lb://security-service
+          predicates:
+            - Path=/security/**
 
