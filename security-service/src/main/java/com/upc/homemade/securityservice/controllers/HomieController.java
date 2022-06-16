@@ -21,7 +21,7 @@ public class HomieController {
 
 
     @GetMapping(path = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Homie> fetchById(@PathVariable("id") Long id) {
+    public ResponseEntity<Homie> findById(@PathVariable("id") Long id) {
         try {
             Optional<Homie> optionalHomie = homieService.findById(id);
             if(optionalHomie.isPresent()) {

@@ -1,8 +1,9 @@
 package com.upc.homemade.communicationservice.services.impls;
 
-import com.upc.homemade.communicationservice.client.ChefClient;
+import com.upc.homemade.communicationservice.client.CommsClient;
 import com.upc.homemade.communicationservice.entities.Publication;
 import com.upc.homemade.communicationservice.exception.ResourceNotFoundException;
+import com.upc.homemade.communicationservice.model.Chef;
 import com.upc.homemade.communicationservice.repositories.PublicationRepository;
 import com.upc.homemade.communicationservice.services.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class PublicationServiceImplementation implements PublicationService {
     private PublicationRepository publicationRepository;
 
     @Autowired
-    public ChefClient chefClient; //Se coloca este client.
+    public CommsClient commsClient; //Se coloca este client.
 
     @Transactional
     @Override
@@ -35,7 +36,14 @@ public class PublicationServiceImplementation implements PublicationService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Publication> findById(Long aLong) throws Exception {
-        return publicationRepository.findById(aLong);
+        //return publicationRepository.findById(aLong);
+        Publication publication =  publicationRepository.findById(aLong).orElse(null);
+        if (publication != null) {
+            Long CId = publication.getChefId();
+            Chef chef = commsClient.fetchById(CId).getBody();
+            publication.setChef(chef);
+        }
+        return Optional.ofNullable(publication);
     }
 
     @Transactional

@@ -1,14 +1,12 @@
 package com.upc.homemade.communicationservice.services.impls;
 
-import com.upc.homemade.communicationservice.client.ChefClient;
-import com.upc.homemade.communicationservice.client.HomieClient;
+import com.upc.homemade.communicationservice.client.CommsClient;
 import com.upc.homemade.communicationservice.entities.Chat;
 import com.upc.homemade.communicationservice.model.Chef;
 import com.upc.homemade.communicationservice.model.Homie;
 import com.upc.homemade.communicationservice.repositories.ChatRepository;
 import com.upc.homemade.communicationservice.services.ChatService;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +20,7 @@ public class ChatServiceImplementation implements ChatService {
     private ChatRepository chatRepository;
 
     @Autowired
-    public ChefClient chefClient; //Se coloca este client.
-    public HomieClient homieClient;
+    public CommsClient commsClient; //Se coloca este client.
     @Transactional
     @Override
     public Chat save(Chat entity) throws Exception {
@@ -39,7 +36,17 @@ public class ChatServiceImplementation implements ChatService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Chat> findById(Long aLong) throws Exception {
-        return chatRepository.findById(aLong);
+        //return chatRepository.findById(aLong);
+        Chat chat =  chatRepository.findById(aLong).orElse(null);
+        if (chat != null) {
+            Long CId = chat.getChefId();
+            Long HId = chat.getHomieId();
+            Chef chef = commsClient.fetchById(CId).getBody();
+            Homie homie = commsClient.findById(HId).getBody();
+            chat.setChef(chef);
+            chat.setHomie(homie);
+        }
+        return Optional.ofNullable(chat);
     }
 
     @Transactional
