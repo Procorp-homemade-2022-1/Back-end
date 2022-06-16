@@ -1,4 +1,4 @@
-package com.upc.homemade.securityservice.entities.controllers;
+package com.upc.homemade.securityservice.controllers;
 
 import com.upc.homemade.securityservice.entities.Chef;
 import com.upc.homemade.securityservice.services.ChefService;

@@ -1,5 +1,6 @@
 package com.upc.homemade.communicationservice.services.impls;
 
+import com.upc.homemade.communicationservice.client.ChefClient;
 import com.upc.homemade.communicationservice.entities.Publication;
 import com.upc.homemade.communicationservice.exception.ResourceNotFoundException;
 import com.upc.homemade.communicationservice.repositories.PublicationRepository;
@@ -15,6 +16,9 @@ import java.util.Optional;
 public class PublicationServiceImplementation implements PublicationService {
     @Autowired
     private PublicationRepository publicationRepository;
+
+    @Autowired
+    public ChefClient chefClient; //Se coloca este client.
 
     @Transactional
     @Override

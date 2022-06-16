@@ -2,7 +2,7 @@ package com.upc.homemade.paymentservice.services.impls;
 
 import com.upc.homemade.paymentservice.entities.Payment;
 import com.upc.homemade.paymentservice.exception.ResourceNotFoundException;
-import com.upc.homemade.paymentservice.services.repositories.PaymentRepository;
+import com.upc.homemade.paymentservice.repositories.PaymentRepository;
 import com.upc.homemade.paymentservice.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

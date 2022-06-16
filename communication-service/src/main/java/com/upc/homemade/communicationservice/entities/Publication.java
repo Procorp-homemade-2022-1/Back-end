@@ -1,5 +1,6 @@
 package com.upc.homemade.communicationservice.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.upc.homemade.communicationservice.model.Chef;
 import lombok.Data;
 
 
@@ -34,5 +35,8 @@ public class Publication {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "comment_id")
     private List<Comment> comments = new ArrayList<>();
+
+    @Transient
+    private Chef chef;
 
 }

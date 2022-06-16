@@ -1,4 +1,4 @@
-package com.upc.homemade.paymentservice.services.repositories;
+package com.upc.homemade.paymentservice.repositories;
 
 import com.upc.homemade.paymentservice.entities.Card;
 import org.springframework.data.jpa.repository.JpaRepository;
