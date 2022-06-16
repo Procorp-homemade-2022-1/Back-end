@@ -37,10 +37,10 @@ public class CardController {
 
     @GetMapping(path = "/homie-id/{homieId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Card>> getByHomieId(@PathVariable("homieId") Long homieId) throws Exception {
-        List<Card> cards =  new ArrayList<>();
-        Card card= new Card();
-        card.setId(homieId);
-        cards = cardService.getByHomieId(homieId);
+        //List<Card> cards =  new ArrayList<>();
+        //Card card= new Card();
+        //card.setId(homieId);
+        List<Card> cards = cardService.getByHomieId(homieId);
         if ( null == cards ) {
             log.error("Cards with homie id {} not found.", homieId);
             return  ResponseEntity.notFound().build();
