@@ -1,7 +1,8 @@
 package com.upc.homemade.securityservice.services.impls;
 
+import com.upc.homemade.securityservice.client.CardClient;
 import com.upc.homemade.securityservice.entities.Homie;
-import com.upc.homemade.securityservice.exception.ResourceNotFoundException;
+import com.upc.homemade.securityservice.model.Card;
 import com.upc.homemade.securityservice.repositories.HomieRepository;
 import com.upc.homemade.securityservice.services.HomieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class HomieServiceImplementation implements HomieService {
     @Autowired
     private HomieRepository homieRepository;
 
+    @Autowired
+    public CardClient cardClient; //Se coloca este client.
     @Transactional
     @Override
     public Homie save(Homie entity) throws Exception {
@@ -31,7 +34,12 @@ public class HomieServiceImplementation implements HomieService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Homie> findById(Long aLong) throws Exception {
-        return homieRepository.findById(aLong);
+        Homie homie =  homieRepository.findById(aLong).orElse(null);
+        if (homie != null) {
+            List<Card> cards = cardClient.getByHomieId(aLong).getBody();
+            homie.setCards(cards);
+        }
+        return Optional.ofNullable(homie);
     }
 
     @Transactional
@@ -48,6 +56,18 @@ public class HomieServiceImplementation implements HomieService {
 
     @Override
     public Homie getHomieById(Long homieId) {
-        return homieRepository.findById(homieId).orElseThrow(() -> new ResourceNotFoundException("Homie", "Id", homieId));
+        Homie homie = homieRepository.findById(homieId).orElse(null);
+        if (homie != null) {
+            List<Card> cards = cardClient.getByHomieId(homieId).getBody();
+            homie.setCards(cards);
+
+        }
+        return homie;
+    }
+    @Override
+    public Card getCard() {
+        long a = 1;
+        return (Card) cardClient.getByHomieId(a).getBody();
+
     }
 }

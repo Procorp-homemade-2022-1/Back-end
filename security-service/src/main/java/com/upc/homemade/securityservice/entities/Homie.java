@@ -1,8 +1,10 @@
 package com.upc.homemade.securityservice.entities;
 
+import com.upc.homemade.securityservice.model.Card;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "homies")
@@ -21,5 +23,8 @@ public class Homie {
     private Long phone;
     @Column(name = "email", length = 40, nullable = false)
     private String email;
-	//edit
+
+    @Transient
+    private List<Card> cards;
+
 }

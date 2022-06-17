@@ -1,6 +1,7 @@
 package com.upc.homemade.businessservice.services.impls;
 
 import com.upc.homemade.businessservice.entities.Recipe;
+import com.upc.homemade.businessservice.exception.ResourceNotFoundException;
 import com.upc.homemade.businessservice.repositories.RecipeRepository;
 import com.upc.homemade.businessservice.services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,9 @@ public class RecipeServiceImplementation implements RecipeService {
     @Override
     public Optional<Recipe> findByTitle(String title) throws Exception {
         return recipeRepository.findByTitle(title);
+    }
+    @Override
+    public Recipe getRecipeById(Long recipeId) {
+        return recipeRepository.findById(recipeId).orElseThrow(() -> new ResourceNotFoundException("Recipe", "Id", recipeId));
     }
 }

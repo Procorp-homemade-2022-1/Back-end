@@ -1,6 +1,9 @@
 package com.upc.homemade.communicationservice.services.impls;
 
+import com.upc.homemade.communicationservice.client.CommsClient;
 import com.upc.homemade.communicationservice.entities.Publication;
+import com.upc.homemade.communicationservice.exception.ResourceNotFoundException;
+import com.upc.homemade.communicationservice.model.Chef;
 import com.upc.homemade.communicationservice.repositories.PublicationRepository;
 import com.upc.homemade.communicationservice.services.PublicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,9 @@ import java.util.Optional;
 public class PublicationServiceImplementation implements PublicationService {
     @Autowired
     private PublicationRepository publicationRepository;
+
+    @Autowired
+    public CommsClient commsClient; //Se coloca este client.
 
     @Transactional
     @Override
@@ -30,7 +36,14 @@ public class PublicationServiceImplementation implements PublicationService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Publication> findById(Long aLong) throws Exception {
-        return publicationRepository.findById(aLong);
+        //return publicationRepository.findById(aLong);
+        Publication publication =  publicationRepository.findById(aLong).orElse(null);
+        if (publication != null) {
+            Long CId = publication.getChefId();
+            Chef chef = commsClient.fetchById(CId).getBody();
+            publication.setChef(chef);
+        }
+        return Optional.ofNullable(publication);
     }
 
     @Transactional
@@ -43,5 +56,9 @@ public class PublicationServiceImplementation implements PublicationService {
     @Override
     public void deleteById(Long aLong) throws Exception {
         publicationRepository.deleteById(aLong);
+    }
+    @Override
+    public Publication getPublicationById(Long publicationid) {
+        return publicationRepository.findById(publicationid).orElseThrow(() -> new ResourceNotFoundException("Publication", "Id", publicationid));
     }
 }

@@ -1,6 +1,7 @@
 package com.upc.homemade.businessservice.services.impls;
 
 import com.upc.homemade.businessservice.entities.Ingredients;
+import com.upc.homemade.businessservice.exception.ResourceNotFoundException;
 import com.upc.homemade.businessservice.repositories.IngredientsRepository;
 import com.upc.homemade.businessservice.services.IngredientsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,9 @@ public class IngredientsServiceImplementation implements IngredientsService {
     public Optional<Ingredients> findByName(String name) throws Exception {
         return ingredientsRepository.findByName(name);
     }
+    @Override
+    public Ingredients getIngredientsById(Long ingredientId) {
+        return ingredientsRepository.findById(ingredientId).orElseThrow(() -> new ResourceNotFoundException("Ingredient", "Id", ingredientId));
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.upc.homemade.securityservice.controllers;
 
 import com.upc.homemade.securityservice.entities.Homie;
+import com.upc.homemade.securityservice.model.Card;
 import com.upc.homemade.securityservice.services.HomieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class HomieController {
 
 
     @GetMapping(path = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Homie> fetchById(@PathVariable("id") Long id) {
+    public ResponseEntity<Homie> findById(@PathVariable("id") Long id) {
         try {
             Optional<Homie> optionalHomie = homieService.findById(id);
             if(optionalHomie.isPresent()) {
@@ -75,5 +76,10 @@ public class HomieController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(path = "/uwu", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Card test() {
+        return homieService.getCard();
     }
 }
