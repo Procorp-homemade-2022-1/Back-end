@@ -63,6 +63,6 @@ public class ChatServiceImplementation implements ChatService {
 
     @Override
     public Chat getChatById(Long aLong) {
-       return chatRepository.getById(aLong);
-       }
+       return chatRepository.getOne(aLong);
+    }
 }

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "security-service")
+@FeignClient(name = "security-service", fallback = SecurityHystrixFallbackFactory.class)
 public interface SecurityClient {
     @GetMapping(path = "homies/id/{id}")
     public ResponseEntity<Homie> findById(@PathVariable("id") Long id);
