@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CommsClientHystrixFallbackFactory implements CommsClient {
+public class CommsHystrixFallbackFactory implements CommsClient {
     @Override
     public ResponseEntity<Chef> fetchById(Long id){
         Chef chef = Chef.builder().address("none").age(null).dni(null).email("none").file("none").name("none").surname("none").phone(null).build();
