@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface RecipeService extends CrudService<Recipe, Long> {
     Optional<Recipe> findByTitle(String title)throws Exception;
+    Recipe getRecipeById(Long recipeId);
 }

@@ -1,6 +1,7 @@
 package com.upc.homemade.communicationservice.services.impls;
 
 import com.upc.homemade.communicationservice.entities.Message;
+import com.upc.homemade.communicationservice.exception.ResourceNotFoundException;
 import com.upc.homemade.communicationservice.repositories.MessageRepository;
 import com.upc.homemade.communicationservice.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,10 @@ public class MessageServiceImplementation implements MessageService {
     public void deleteById(Long aLong) throws Exception {
         messageRepository.deleteById(aLong);
 
+    }
+
+    @Override
+    public Message getMessageById(Long messageId) {
+        return messageRepository.findById(messageId).orElseThrow(() -> new ResourceNotFoundException("Message", "Id", messageId));
     }
 }

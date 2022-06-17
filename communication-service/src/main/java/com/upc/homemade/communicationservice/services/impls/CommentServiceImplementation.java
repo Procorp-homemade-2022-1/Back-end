@@ -1,6 +1,7 @@
 package com.upc.homemade.communicationservice.services.impls;
 
 import com.upc.homemade.communicationservice.entities.Comment;
+import com.upc.homemade.communicationservice.exception.ResourceNotFoundException;
 import com.upc.homemade.communicationservice.repositories.CommentRepository;
 import com.upc.homemade.communicationservice.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,9 @@ public class CommentServiceImplementation implements CommentService {
     @Override
     public void deleteById(Long aLong) throws Exception {
         commentRepository.deleteById(aLong);
+    }
+    @Override
+    public Comment getCommentById(Long commentId) {
+        return commentRepository.findById(commentId).orElseThrow(() -> new ResourceNotFoundException("Comment", "Id", commentId));
     }
 }

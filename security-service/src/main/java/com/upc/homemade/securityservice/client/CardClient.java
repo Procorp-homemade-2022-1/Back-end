@@ -11,8 +11,8 @@ import com.upc.homemade.securityservice.model.Card;
 import javax.validation.Valid;
 import java.util.List;
 
-@FeignClient(name = "payment-service", path = "/cards")
+@FeignClient(name = "billing-service", fallback = CardsHystrixFallbackFactory.class)
 public interface CardClient {
-    @GetMapping( "/homie-id/{homieId}")
+    @GetMapping( "cards/homie-id/{homieId}")
     public ResponseEntity<List<Card>> getByHomieId(@PathVariable("homieId") Long homieId);
 }
