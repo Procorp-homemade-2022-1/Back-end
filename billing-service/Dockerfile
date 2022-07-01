@@ -4,7 +4,7 @@ WORKDIR /home/gradle/src
 RUN gradle build --no-daemon -x test
 
 FROM openjdk:11-jre-slim
-EXPOSE 8099
+EXPOSE 8095
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/spring-boot-application.jar
 ENTRYPOINT ["java", "-jar","/app/spring-boot-application.jar"]
