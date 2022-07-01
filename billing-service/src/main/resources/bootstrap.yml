@@ -3,10 +3,10 @@ spring:
     name: billing-service
   cloud:
     config:
-      uri: http://localhost:8081
+      uri: http://ec2-54-226-1-121.compute-1.amazonaws.com:8081
       username: root
       password: s3cr3t
   boot:
     admin:
       client:
-        url: http://localhost:8086
+        url: http://ec2-54-163-24-2.compute-1.amazonaws.com:8086
